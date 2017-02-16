@@ -65,7 +65,7 @@ make run
 
 ### Why are they linux only?
 
-Let's look at the Go source code [here](https://github.com/golang/go/tree/release-branch.go1.8/src/plugin)
+Let's look at the Go source code [here](https://github.com/golang/go/tree/release-branch.go1.8/src/plugin). The standard library has a `Cgo` implementation!
 
 ```C
 #cgo linux LDFLAGS: -ldl
@@ -75,7 +75,7 @@ Let's look at the Go source code [here](https://github.com/golang/go/tree/releas
 #include <stdint.h>
 ```
 
-This includes the `dlfcn.h` file, and uses the traditional Linux linking functions. Exactly the same as this prototype:
+This includes the `dlfcn.h` file, and uses the traditional Linux linking functions. As in this prototype:
 
 ```C
 
@@ -111,4 +111,21 @@ This gives us a hint into how Go plugins work, they use POSIX dynamic loading [m
 
 Right now there is only support for handling the linux version in the C implementation. The good news is that there is already resources for building shared objects for Windows and other archtypes.
 
+# We are thinking about using them in Kubernetes kops!
 
+<p align="center">
+  <img src="img/k8s.png" width="180"> </image>
+</p>
+
+See the original plugin library proposal [here](https://github.com/kubernetes/kops/issues/958).. We are now thinking about implementing a *bring your own Go plugin* model to `kops`!
+
+### Concerns
+
+1. We will need to standardize all symbols for our plugin library.
+    a. We are experimenting with self-validation. This would require users to implement a well known interface, and have some sort of magic to validate their plugin can be asserted.
+2. Another graph walker to dynamically load plugins at runtime.
+    a. We would be building in a lot of boilerplate for users to have a flexible plugin model.
+    b. We *could* use a `*.so` model.. and use the filename as the plugin unique ID
+3. Support and repeatability
+    a. One of the big features of Go is the fact that everything ships in one nice and neet statically linked binary.
+    b. We now start running into permutation problems with trying to support our tool. (Which version of kops, with which version of a plugin)
