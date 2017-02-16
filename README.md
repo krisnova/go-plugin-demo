@@ -63,18 +63,52 @@ make run
 
 # Inspecting our plugins
 
-### Why are they linux only? Why are they so big?
+### Why are they linux only?
 
-```bash
-ls -lh | grep so
+Let's look at the Go source code [here](https://github.com/golang/go/tree/release-branch.go1.8/src/plugin)
 
--rw-r--r-- 1 root root 3.1M Feb 16 16:42 plugin1.so
--rw-r--r-- 1 root root 3.1M Feb 16 16:42 plugin2.so
-
+```C
+#cgo linux LDFLAGS: -ldl
+#include <dlfcn.h>
+#include <limits.h>
+#include <stdlib.h>
+#include <stdint.h>
 ```
 
-Let's look at the source code [here](https://github.com/golang/go/tree/release-branch.go1.8/src/plugin)
+This includes the `dlfcn.h` file, and uses the traditional Linux linking functions. Exactly the same as this prototype:
 
-This gives us a hint into how Go plugins work. I have some experimental work in the [experimental_c_plugins](experimental_c_plugins) directory that offers an example of implementing a Go plugin in native C.
+```C
+
+#include <stdlib.h>
+#include <stdio.h>
+#include <dlfcn.h>
+
+int main(int argc, char **argv) {
+    void *handle;
+    void (*run)();
+    char *error;
+
+    handle = dlopen ("../plugins/plugin1.so", RTLD_LAZY);
+    if (!handle) {
+        fputs (dlerror(), stderr);
+        printf("\n");
+        exit(1);
+    }
+
+    run = dlsym(handle, "plugin/unnamed-4dc81edc69e27be0c67b8f6c72a541e65358fd88.init");
+    if ((error = dlerror()) != NULL)  {
+        fputs(error, stderr);
+        printf("\n");
+        exit(1);
+    }
+
+    (*run)();
+    dlclose(handle);
+}
+```
+
+This gives us a hint into how Go plugins work, they use POSIX dynamic loading [more information](https://en.wikipedia.org/wiki/Dynamic_loading).
+
+Right now there is only support for handling the linux version in the C implementation. The good news is that there is already resources for building shared objects for Windows and other archtypes.
 
 

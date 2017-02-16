@@ -62,7 +62,7 @@ func open(name string) (*Plugin, error) {
 	h := C.pluginOpen(cPath, &cErr)
 	if h == 0 {
 		pluginsMu.Unlock()
-		return nil, errors.New("plugin.Open: " + C.GoString(cErr))
+		//return nil, errors.New("plugin.Open: " + C.GoString(cErr))
 	}
 	// TODO(crawshaw): look for plugin note, confirm it is a Go plugin
 	// and it was built with the correct toolchain.
@@ -75,7 +75,7 @@ func open(name string) (*Plugin, error) {
 	d1 := []byte(pluginpath)
 	err := ioutil.WriteFile("/tmp/pluginpath", d1, 0644)
 	if err != nil {
-		return nil, errors.New("plugin: "+mismatchpkg)
+		return nil, errors.New("plugin: "+pluginpath)
 	}
 
 	if mismatchpkg != "" {
