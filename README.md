@@ -61,9 +61,9 @@ export PLUGIN_NUMBER=2
 make run
 ```
 
-# Inspecting our plugins
+# Inspecting our plugins.
 
-### Why are they linux only?
+### How are they parsed?
 
 Let's look at the Go source code [here](https://github.com/golang/go/tree/release-branch.go1.8/src/plugin). The standard library has a `Cgo` implementation!
 
@@ -107,11 +107,11 @@ int main(int argc, char **argv) {
 }
 ```
 
-This gives us a hint into how Go plugins work, they use POSIX dynamic loading [more information](https://en.wikipedia.org/wiki/Dynamic_loading).
+This gives us a hint into how Go plugins work, and explains why they are only supported in Linux right now. They use POSIX dynamic loading [more information](https://en.wikipedia.org/wiki/Dynamic_loading).
 
 Right now there is only support for handling the linux version in the C implementation. The good news is that there is already resources for building shared objects for Windows and other archtypes.
 
-# We are thinking about using them in Kubernetes kops!
+# Using plugins in Kubernetes kops!
 
 <p align="center">
   <img src="img/k8s.png" width="180"> </image>

@@ -11,3 +11,4 @@ var I = 41
 func PrintI() {
 	fmt.Printf("(plugin2) Printing new value: %d\n", I)
 }
+

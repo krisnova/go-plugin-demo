@@ -12,7 +12,6 @@ build:
 	@rm -f plugins/plugin2.so
 	go build -buildmode=plugin -o plugins/plugin2.so plugins/plugin2.go
 	go build -o demo main.go
-	#gcc -ldl demo.c -o main_c
 	@touch *
 	@echo "Now you can change your plugin at runtime by setting PLUGIN_NUMBER=n"
 	@echo "-------------------------------------------------------------------------"
@@ -22,7 +21,7 @@ build:
 run:
 	@echo ""
 	@echo "---[Demonstrating]-------------------------------------------------------"
-	./main_go
+	./demo
 	@echo "-------------------------------------------------------------------------"
 	@echo ""
 
