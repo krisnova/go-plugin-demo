@@ -1,0 +1,5 @@
+.main_c
+.main_go
+.idea*
+*.so
+plugins/*.so
