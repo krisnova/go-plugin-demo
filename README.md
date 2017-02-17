@@ -4,24 +4,24 @@
   <img src="img/gopher.png" width="180"> </image>
 </p>
 
-### What is a Go plugin?
+## What is a Go Plugin
 
-##### The Plugin (shared object)
+### The Plugin (Shared Object)
 
 A Go plugin is essentially a shared object. We recognize these from our close neighbors in the `C` and `C++` programming languages.
 
 Go plugin's are *NOT* part of the original program. They are standalone binaries that adhere to an ABI (Application Binary Interface) that another Go program can chose to attempt to run.
 
 
-##### The Program
+#### The Program
 
 A Go program can choose to implement a Go plugin (remember this is a shared object or `.so` file) at *runtime*. This is huge because we no loner have to recompile anything to drastically change the
 behavior of a Go program.
 
 
-# Demo
+## Demo
 
-### Attach to the official `golang:1.8` docker container
+### Attach to the Official `golang:1.8` Docker Container
 
 ```bash
 make
@@ -35,7 +35,7 @@ docker run \
     -t \
     -v $GOPATH/src/github.com/kris-nova/go-plugin-demo:/go/src/github.com/kris-nova/go-plugin-demo \
     -w /go/src/github.com/kris-nova/go-plugin-demo \
-    --rm 
+    --rm
 ```
 
 ### Compile all the things
@@ -46,7 +46,7 @@ From the docker container we can go ahead and natively compile the main program,
 make build
 ```
 
-### Run the program
+### Run the Program
 
 By default we will be running `plugin1`. Run the program with
 
@@ -54,16 +54,16 @@ By default we will be running `plugin1`. Run the program with
 make run
 ```
 
-### Change the plugin at runtime
+### Change the Plugin at Runtime
 
 ```bash
 export PLUGIN_NUMBER=2
 make run
 ```
 
-# Inspecting our plugins.
+## Inspecting Our Plugins
 
-### How are they parsed?
+### How They're Parsed
 
 Let's look at the Go source code [here](https://github.com/golang/go/tree/release-branch.go1.8/src/plugin). The standard library has a `Cgo` implementation!
 
@@ -111,7 +111,7 @@ This gives us a hint into how Go plugins work, and explains why they are only su
 
 Right now there is only support for handling the linux version in the C implementation. The good news is that there is already resources for building shared objects for Windows and other archtypes.
 
-# Using plugins in Kubernetes kops!
+## Using Plugins in Kubernetes Kops!
 
 <p align="center">
   <img src="img/k8s.png" width="180"> </image>
