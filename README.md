@@ -6,9 +6,9 @@
 
 ### The Plugin (Shared Object)
 
-A Go plugin is essentially a shared object. We recognize these from our close neighbors in the `C` and `C++` programming languages.
+A Go plugin is essentially a shared object. We recognize these from our close neighbors: the `C` and `C++` programming languages.
 
-Go plugin's are *NOT* part of the original program. They are standalone binaries that adhere to an ABI (Application Binary Interface) that another Go program can chose to attempt to run.
+Go plugin's are *NOT* part of the original program. They are standalone binaries that adhere to an ABI (Application Binary Interface) that another Go program can choose to attempt to run.
 
 #### The Program
 
@@ -119,7 +119,7 @@ See the original plugin library proposal [here](https://github.com/kubernetes/ko
   - We are experimenting with self-validation. This would require users to implement a well known interface, and have some sort of magic to validate their plugin can be asserted.
 - Another graph walker to dynamically load plugins at runtime.
   - We would be building in a lot of boilerplate for users to have a flexible plugin model.
-  - We *could* use a `*.so` model.. and use the filename as the plugin unique ID
+  - We *could* use a `*.so` model... and use the filename as the plugin unique ID.
 - Support and repeatability
   - One of the big features of Go is the fact that everything ships in one nice and neet statically linked binary.
-  - We now start running into permutation problems with trying to support our tool. (Which version of kops, with which version of a plugin)
+  - We now start running into permutation problems with trying to support our tool (i.e., which version of kops and with which version of a plugin).
