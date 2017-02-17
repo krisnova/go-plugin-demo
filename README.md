@@ -1,8 +1,6 @@
 # Go plugins in 1.8
 
-<p align="center">
-  <img src="img/gopher.png" width="180"> </image>
-</p>
+![adorable gopher](img/gopher-180.png)
 
 ## What is a Go Plugin
 
@@ -111,9 +109,7 @@ Right now there is only support for handling the linux version in the C implemen
 
 ## Using Plugins in Kubernetes Kops
 
-<p align="center">
-  <img src="img/k8s.png" width="180"> </image>
-</p>
+![k8s logo](img/k8s-180.png)
 
 See the original plugin library proposal [here](https://github.com/kubernetes/kops/issues/958).. We are now thinking about implementing a *bring your own Go plugin* model to `kops`!
 
