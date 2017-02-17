@@ -109,7 +109,7 @@ This gives us a hint into how Go plugins work, and explains why they are only su
 
 Right now there is only support for handling the linux version in the C implementation. The good news is that there is already resources for building shared objects for Windows and other archtypes.
 
-## Using Plugins in Kubernetes Kops!
+## Using Plugins in Kubernetes Kops
 
 <p align="center">
   <img src="img/k8s.png" width="180"> </image>
