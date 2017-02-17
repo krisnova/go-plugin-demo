@@ -119,11 +119,11 @@ See the original plugin library proposal [here](https://github.com/kubernetes/ko
 
 ### Concerns
 
-1. We will need to standardize all symbols for our plugin library.
-    a. We are experimenting with self-validation. This would require users to implement a well known interface, and have some sort of magic to validate their plugin can be asserted.
-2. Another graph walker to dynamically load plugins at runtime.
-    a. We would be building in a lot of boilerplate for users to have a flexible plugin model.
-    b. We *could* use a `*.so` model.. and use the filename as the plugin unique ID
-3. Support and repeatability
-    a. One of the big features of Go is the fact that everything ships in one nice and neet statically linked binary.
-    b. We now start running into permutation problems with trying to support our tool. (Which version of kops, with which version of a plugin)
+- We will need to standardize all symbols for our plugin library.
+  -We are experimenting with self-validation. This would require users to implement a well known interface, and have some sort of magic to validate their plugin can be asserted.
+- Another graph walker to dynamically load plugins at runtime.
+  -We would be building in a lot of boilerplate for users to have a flexible plugin model.
+  -We *could* use a `*.so` model.. and use the filename as the plugin unique ID
+- Support and repeatability
+  - One of the big features of Go is the fact that everything ships in one nice and neet statically linked binary.
+  - We now start running into permutation problems with trying to support our tool. (Which version of kops, with which version of a plugin)
