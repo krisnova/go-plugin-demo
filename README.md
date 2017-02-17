@@ -12,7 +12,7 @@ Go plugin's are *NOT* part of the original program. They are standalone binaries
 
 #### The Program
 
-A Go program can choose to implement a Go plugin (remember this is a shared object or `.so` file) at *runtime*. This is huge because we no loner have to recompile anything to drastically change the
+A Go program can choose to implement a Go plugin (remember this is a shared object or `.so` file) at *runtime*. This is huge because we no longer have to recompile anything to drastically change the
 behavior of a Go program.
 
 ## Demo
