@@ -91,14 +91,18 @@ int main(int argc, char **argv) {
         exit(1);
     }
 
+    // Here we tell the handle to look for the known golang symbol.
     run = dlsym(handle, "plugin/unnamed-4dc81edc69e27be0c67b8f6c72a541e65358fd88.init");
+    
     if ((error = dlerror()) != NULL)  {
         fputs(error, stderr);
         printf("\n");
         exit(1);
     }
 
+    // Here we actually run the function (with no arguments) that we referenced earlier.
     (*run)();
+    
     dlclose(handle);
 }
 ```
