@@ -4,6 +4,7 @@ import (
 	"plugin"
 	"fmt"
 	"os"
+	"log"
 )
 
 // PluginNumber defines a unique Go plugin to run our program with.
@@ -17,6 +18,7 @@ var PluginName = "plugins/plugin%s.so"
 
 // main is a basic function to demonstrate how Go plugins work.
 func main() {
+	log.Println("Matt Tucker says start all mains with a log")
 
 	// Here we demonstrate how we can switch plugins at runtime
 	// without having to recompile our binary! How cool!
