@@ -8,10 +8,10 @@ build:
 	@echo ""
 	@echo "---[Compiling]-----------------------------------------------------------"
 	@rm -f plugins/plugin1.so
-	go build -buildmode=plugin -o plugins/plugin1.so plugins/plugin1.go
+	time go build -buildmode=plugin -o plugins/plugin1.so plugins/plugin1.go
 	@rm -f plugins/plugin2.so
-	go build -buildmode=plugin -o plugins/plugin2.so plugins/plugin2.go
-	go build -o demo main.go
+	time go build -buildmode=plugin -o plugins/plugin2.so plugins/plugin2.go
+	time go build -o demo main.go
 	@touch *
 	@echo "Now you can change your plugin at runtime by setting PLUGIN_NUMBER=n"
 	@echo "-------------------------------------------------------------------------"
